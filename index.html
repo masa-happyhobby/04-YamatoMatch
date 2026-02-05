@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Yamato Match — Japanese Vocabulary & Pronunciation</title>
+  <meta name="description" content="Yamato Match is a Japanese vocabulary app for non-native learners: 2-column matching, nuance, example sentences, and pronunciation practice." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Yamato Match" />
+  <meta property="og:description" content="Match words, learn nuance, and practice pronunciation in Japanese." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-image.png" />
+
+  <style>
+    :root{
+      --bg0:#060b14;
+      --bg1:#0b1220;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.09);
+      --stroke:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.55);
+      --accent:#7c3aed; /* violet */
+      --accent2:#06b6d4; /* cyan */
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --radius:18px;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(124,58,237,.35), transparent 55%),
+        radial-gradient(900px 520px at 80% 20%, rgba(6,182,212,.28), transparent 55%),
+        radial-gradient(800px 500px at 50% 80%, rgba(34,197,94,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:24px 18px 70px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 12px;
+      position:sticky;top:0;backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(6,11,20,.65), rgba(6,11,20,.25));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      z-index:10;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.9), rgba(6,182,212,.75));
+      box-shadow: 0 12px 36px rgba(124,58,237,.18);
+      border:1px solid rgba(255,255,255,.12);
+      display:grid;place-items:center;
+      font-weight:800;
+      letter-spacing:-.02em;
+    }
+    .brand h1{font-size:16px;margin:0;line-height:1.1}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted2)}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{
+      padding:9px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-size:13px;color:var(--muted);
+    }
+    .pill:hover{background:rgba(255,255,255,.07);color:var(--text)}
+    .hero{padding:42px 6px 14px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 940px){
+      .grid{grid-template-columns: 1fr}
+      header{position:relative}
+    }
+    .card{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .title{
+      font-size: 42px;
+      line-height: 1.05;
+      margin: 0 0 10px;
+      letter-spacing: -0.03em;
+    }
+    .subtitle{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 650;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.78));
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .badge{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.14);
+      border: 1px solid rgba(34,197,94,.22);
+      color: rgba(234,240,255,.92);
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .badge i{width:8px;height:8px;border-radius:99px;background:var(--ok);display:inline-block}
+    .mini{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 520px){ .mini{grid-template-columns: 1fr} }
+    .mini .tile{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+    }
+    .tile h3{margin:0 0 6px;font-size:14px}
+    .tile p{margin:0;color:var(--muted2);font-size:13px;line-height:1.5}
+    h2{margin:34px 6px 12px;font-size:18px;letter-spacing:-.01em}
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 980px){ .features{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .features{grid-template-columns:1fr} }
+    .f{
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .f .k{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+    .dot{
+      width:10px;height:10px;border-radius:99px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 20px rgba(124,58,237,.18);
+    }
+    .f h3{margin:0;font-size:14px}
+    .f p{margin:6px 0 0;color:var(--muted2);font-size:13px;line-height:1.55}
+    .sectionCard{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 18px;
+    }
+    .list{
+      margin:0;padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    .callout{
+      border-radius: 16px;
+      padding: 14px 16px;
+      border:1px solid rgba(245,158,11,.20);
+      background: rgba(245,158,11,.10);
+      color: rgba(234,240,255,.88);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    footer{
+      margin-top: 42px;
+      padding: 18px 6px 0;
+      color: var(--muted2);
+      font-size: 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{color:var(--muted);text-decoration:none}
+    .links a:hover{color:var(--text)}
+    .mono{font-family: var(--mono)}
+  </style>
+</head>
+
+<body>
+  <header class="wrap" style="padding-top:14px;padding-bottom:14px;">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">YM</div>
+      <div>
+        <h1>Yamato Match</h1>
+        <p>Japanese vocabulary • nuance • pronunciation</p>
+      </div>
+    </div>
+    <nav>
+      <a class="pill" href="#features">Features</a>
+      <a class="pill" href="#how">How it works</a>
+      <a class="pill" href="#pro">Pro & Billing</a>
+      <a class="pill" href="support.html">Support</a>
+      <a class="pill" href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <main class="wrap hero">
+    <div class="grid">
+      <section class="card">
+        <div class="badge"><i></i> Designed for non-native learners</div>
+        <h1 class="title">Match words.<br/>Learn nuance.<br/>Hear pronunciation.</h1>
+        <p class="subtitle">
+          <b>Yamato Match</b> is a modern Japanese vocabulary game. Play a 2-column word match, then tap cleared words to view
+          meaning, nuance, example sentences, and pronunciation (ja-JP).
+        </p>
+
+        <div class="ctaRow">
+          <!-- Replace with your App Store URL -->
+          <a class="btn primary" href="https://example.com" target="_blank" rel="noopener">
+            <span aria-hidden="true"></span> Get on the App Store
+          </a>
+          <a class="btn" href="#pro">Pro features</a>
+          <a class="btn" href="support.html">Contact</a>
+        </div>
+
+        <div class="mini">
+          <div class="tile">
+            <h3>Categories</h3>
+            <p>Emotions / Nature / Onomatopoeia</p>
+          </div>
+          <div class="tile">
+            <h3>Practice modes</h3>
+            <p>Match game • Daily Challenge • Pronunciation list</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2 style="margin-top:0">Quick overview</h2>
+        <div class="sectionCard" style="margin-top:12px">
+          <ul class="list">
+            <li><b>2-column matching:</b> Word ↔ Meaning</li>
+            <li><b>Word details:</b> Meaning / Nuance / Examples</li>
+            <li><b>Pronunciation:</b> Tap speaker to listen (iOS TTS)</li>
+            <li><b>No account needed:</b> Start learning instantly</li>
+          </ul>
+        </div>
+
+        <h2 id="features">Features</h2>
+        <div class="features">
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Fast matching gameplay</h3></div>
+            <p>Clear, minimal UI. Focus on recognition and speed.</p>
+          </div>
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Nuance & examples</h3></div>
+            <p>Tap cleared words to understand subtle meaning and usage.</p>
+          </div>
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Pronunciation practice</h3></div>
+            <p>Word list with a speaker button on the right of each row.</p>
+          </div>
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Daily Challenge</h3></div>
+            <p>A quick way to build a daily learning habit.</p>
+          </div>
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Kanji toggle (Pro)</h3></div>
+            <p>Show Kanji where available to strengthen reading skills.</p>
+          </div>
+          <div class="f">
+            <div class="k"><span class="dot"></span><h3>Offline-friendly</h3></div>
+            <p>Words are bundled; you can practice anywhere.</p>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:14px">
+          Tip: Repeat the word 3 times, then use it in a short sentence.
+        </div>
+      </aside>
+    </div>
+
+    <h2 id="how">How it works</h2>
+    <section class="sectionCard">
+      <ul class="list">
+        <li><b>Play:</b> Match the left “Word” with the right “Meaning”.</li>
+        <li><b>Review:</b> Tap a cleared word to open details (nuance + example sentences).</li>
+        <li><b>Listen:</b> Use the pronunciation button (ja-JP text-to-speech).</li>
+        <li><b>Practice:</b> Open the Pronunciation list and tap the speaker on the right for quick drills.</li>
+      </ul>
+    </section>
+
+    <h2 id="pro">Pro & Billing (In-App Purchase)</h2>
+    <section class="sectionCard">
+      <p class="subtitle" style="margin:0 0 10px">
+        Yamato Match offers an optional <b>one-time</b> In-App Purchase to unlock Pro features.
+        (If you plan subscriptions instead, tell me and I’ll rewrite this section.)
+      </p>
+      <ul class="list">
+        <li><b>Pro unlocks:</b> Kanji display, larger pair counts, and full access to premium features.</li>
+        <li><b>Restore purchases:</b> Available from the paywall via “Restore Purchases”.</li>
+        <li><b>Payment:</b> Managed securely by Apple via the App Store.</li>
+      </ul>
+      <p class="subtitle" style="margin:10px 0 0">
+        For billing questions, please contact support: <span class="mono">support.html</span>.
+      </p>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Yamato Match</div>
+      <div class="links">
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
